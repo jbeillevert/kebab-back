@@ -1,6 +1,9 @@
 # Utiliser une image de base Node.js
 FROM node:18
 
+#Use production node environment by default.
+ENV NODE_ENV production
+
 # Définir le répertoire de travail
 WORKDIR /
 
