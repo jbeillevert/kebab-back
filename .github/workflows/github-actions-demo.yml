@@ -14,6 +14,7 @@ jobs:
           touch hello
           touch .env
           echo SUPABASE_URL=https://jyioyqkxetlltuvxevih.supabase.co API_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp5aW95cWt4ZXRsbHR1dnhldmloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDU0MTU4MDIsImV4cCI6MjAyMDk5MTgwMn0.KcItvCXRyhrg27KyVcHrjBMepsKFzm0Md3khT2lHTTE >> .env
+          cat .env
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -31,5 +32,6 @@ jobs:
         run: |
               echo "API_URL=$API_URL"
               echo "API_KEY=$API_KEY"
+              cat .env
       - name: Run tests
         run: npm test
