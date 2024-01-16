@@ -5,10 +5,8 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up environment variables
-        run: |
-             echo "API_URL=${{ secrets.API_URL }}" >> $GITHUB_ENV
-             echo "API_KEY=${{ secrets.API_KEY }}" >> $GITHUB_ENV
+      - env: ${{ secrets.SUPABASE_URL }}
+          
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - name: Checkout code
         uses: actions/checkout@v2
@@ -29,5 +27,9 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: install dependencies
         run: npm install
+      - name: Display environment variables
+        run: |
+              echo "API_URL=$API_URL"
+              echo "API_KEY=$API_KEY"
       - name: Run tests
         run: npm test
