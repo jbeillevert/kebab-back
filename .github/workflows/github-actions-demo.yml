@@ -5,7 +5,9 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - env: ${{ secrets.SUPABASE_URL }}
+      - env:
+          API_URL: https://jyioyqkxetlltuvxevih.supabase.co
+          API_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp5aW95cWt4ZXRsbHR1dnhldmloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDU0MTU4MDIsImV4cCI6MjAyMDk5MTgwMn0.KcItvCXRyhrg27KyVcHrjBMepsKFzm0Md3khT2lHTTE
           
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - name: Checkout code
