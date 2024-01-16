@@ -63,9 +63,24 @@ const updateRecipe = async (req, res) => {
         })
 }
 
+const deleteRecipe = async (req, res) => {
+    const { id } = req.params;
+    await supabase
+        .from('recipes')
+        .delete()
+        .eq('id', id)
+        .then(() => {
+            res.status(201).send("Deleted");
+        })
+        .catch((err) => {
+            res.status(500).send("Error deleted recipe : ", err);
+        })
+}
+
 module.exports = {
     createRecipe,
     getAllRecipes,
     getRecipeById,
-    updateRecipe
+    updateRecipe,
+    deleteRecipe
 }
