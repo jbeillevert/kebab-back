@@ -14,7 +14,9 @@ router.post("/login", loginController.login);
 
 const recipesController = require("../controllers/recipes.controller");
 
-router.get("/recipes", recipesController.getRecipes);
+router.post("/recipes", recipesController.createRecipe);
+router.get("/recipes", recipesController.getAllRecipes);
+router.get("/recipes/:id", recipesController.getRecipeById);
 
 //#----------#
 
