@@ -6,7 +6,7 @@ const createRecipe = async (req, res) => {
     await supabase
         .from("recipes")
         .insert([
-            {name: name, type: type, nb_ingredient: nbIngredient, cooking_time: cookingTime, description: description, picture: picture}
+            {name: name, type: type, nb_ingredient: nbIngredient, cooking_time: cookingTime, description: description, picture: picture, creation_date: new Date()}
         ])
         .select()
         .then(() => {
@@ -43,8 +43,29 @@ const getRecipeById = async (req, res) => {
             res.status(500).send("Error getting recipe by id : ", err);
         })
 }
+
+// Update
+
+const updateRecipe = async (req, res) => {
+    const { id } = req.params;
+    const { name, type, nbIngredient, cookingTime, description, picture } = req.body;
+    await supabase
+        .from("recipes")
+        .update({
+            name: name, type: type, nb_ingredient: nbIngredient, cooking_time: cookingTime, description: description, picture: picture
+        })
+        .eq("id", id)
+        .then(() => {
+            res.status(201).send("Updated");
+        })
+        .catch((err) => {
+            res.status(500).send("Error updating recipe : ", err);
+        })
+}
+
 module.exports = {
     createRecipe,
     getAllRecipes,
-    getRecipeById
+    getRecipeById,
+    updateRecipe
 }
