@@ -9,10 +9,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: create env file
+        run: |
+          touch .env
+          echo SUPABASE_URL=https://jyioyqkxetlltuvxevih.supabase.co API_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp5aW95cWt4ZXRsbHR1dnhldmloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDU0MTU4MDIsImV4cCI6MjAyMDk5MTgwMn0.KcItvCXRyhrg27KyVcHrjBMepsKFzm0Md3khT2lHTTE >> .env
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '18'
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
@@ -30,9 +35,4 @@ jobs:
               echo "API_URL=$API_URL"
               echo "API_KEY=$API_KEY"
       - name: Run tests
-        with:
-            env: true
-        env:
-          SUPABASE_URL: https://jyioyqkxetlltuvxevih.supabase.co
-          API_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp5aW95cWt4ZXRsbHR1dnhldmloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDU0MTU4MDIsImV4cCI6MjAyMDk5MTgwMn0.KcItvCXRyhrg27KyVcHrjBMepsKFzm0Md3khT2lHTTE    
         run: npm test
