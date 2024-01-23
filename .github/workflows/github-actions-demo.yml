@@ -1,0 +1,43 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: 
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: create env file
+        run: |
+          touch hello
+          touch .env
+          (echo "API_URL=https://jyioyqkxetlltuvxevih.supabase.co";echo "API_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp5aW95cWt4ZXRsbHR1dnhldmloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDU0MTU4MDIsImV4cCI6MjAyMDk5MTgwMn0.KcItvCXRyhrg27KyVcHrjBMepsKFzm0Md3khT2lHTTE") >> .env
+          cat .env
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: List files in the repository
+        run: |
+          ls -a ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: install dependencies
+        run: npm install
+      - name: Display environment variables
+        run: |
+              echo "API_URL=$API_URL"
+              echo "API_KEY=$API_KEY"
+              cat .env
+      - name: Run tests
+        run: npm test
